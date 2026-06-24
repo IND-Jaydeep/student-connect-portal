@@ -1,0 +1,16 @@
+package com.studentconnect.backend.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class NoticeAnalysisResponse {
+    private String category;
+    private String priority;
+    private String summary;
+}

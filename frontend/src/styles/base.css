@@ -1,0 +1,136 @@
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 14px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    font-size: .88rem;
+    background: var(--color-background);
+    overflow-x: hidden;
+    color: var(--color-dark);
+}
+
+* {
+    color: var(--color-dark);
+}
+
+img {
+    display: block;
+    width: 100%;
+}
+
+h1 {
+    font-weight: 800;
+    font-size: 1.8rem;
+}
+
+h2 {
+    font-size: 1.4rem;
+}
+
+h3 {
+    font-size: .87rem;
+}
+
+h4 {
+    font-size: .8rem;
+}
+
+h5 {
+    font-size: .77rem;
+}
+
+small {
+    font-size: .75rem;
+}
+
+.text-muted {
+    color: var(--color-info);
+}
+
+p {
+    color: var(--color-dark-varient);
+}
+
+b {
+    color: var(--color-dark);
+}
+
+.primary {
+    color: var(--color-primary);
+}
+
+.danger {
+    color: var(--color-danger);
+}
+
+.success {
+    color: var(--color-success);
+}
+
+.warning {
+    color: var(--color-warning);
+}
+
+/* Global Button Style */
+.btn {
+    background: var(--color-primary);
+    border: 2px solid var(--color-primary) !important;
+    border-radius: var(--border-radius-1);
+    padding: .6rem 1.2rem;
+    color: #fff !important;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 600;
+    transition: all 300ms ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn:hover {
+    color: var(--color-primary) !important;
+    background: transparent !important;
+}
+
+/* Badge */
+.badge {
+    padding: 0.2rem 0.5rem;
+    font-size: 0.75rem;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+.badge.success {
+    background-color: var(--color-success);
+    color: #155724;
+}
+
+.badge.warning {
+    background-color: var(--color-warning);
+    color: #856404;
+}
+
+.badge.danger {
+    background-color: var(--color-danger);
+    color: #721c24;
+}
+
+.badge.info {
+    background-color: var(--color-primary);
+    color: #fff;
+}
+
+.badge.primary {
+    background-color: var(--color-light);
+    color: var(--color-primary);
+}
