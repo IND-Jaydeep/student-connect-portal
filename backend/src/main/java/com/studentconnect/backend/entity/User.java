@@ -3,15 +3,17 @@ package com.studentconnect.backend.entity;
 import com.studentconnect.backend.enums.Role;
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "users")
+@Inheritance(strategy = InheritanceType.JOINED)
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@SuperBuilder
 public class User {
 
     @Id
@@ -36,11 +38,6 @@ public class User {
 
     private String address;
 
-    @Column(length = 100)
-    private String course;
-
-    @Column(name = "student_id", length = 20)
-    private String studentId;
 
     private LocalDate dob;
 

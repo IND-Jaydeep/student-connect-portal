@@ -18,12 +18,16 @@ export const NAV_CONFIG = {
   ],
   faculty: [
     { label: 'Home', icon: 'home', path: '/faculty' },
+    { label: 'Assigned Queries', icon: 'question_answer', path: '/faculty/queries' },
+    { label: 'Notices', icon: 'campaign', path: '/faculty/notices' },
+    { label: 'NLQuery', icon: 'search', path: '/faculty/nlquery' },
   ],
   admin: [
     { label: 'Home', icon: 'home', path: '/admin' },
     { label: 'Queries', icon: 'question_answer', path: '/admin/queries' },
     { label: 'Notice Builder', icon: 'campaign', path: '/admin/notices' },
     { label: 'ChatBot', icon: 'smart_toy', path: '/admin/chatbot' },
+    { label: 'Add User', icon: 'person_add', path: '/admin/add-user' },
   ],
 };
 

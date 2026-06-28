@@ -3,7 +3,6 @@ import { AuthProvider, useAuth } from './hooks/useAuth';
 
 // Pages
 import Login from './pages/Login';
-import Signup from './pages/Signup';
 import Settings from './pages/Settings';
 import Statistics from './pages/Statistics';
 import Password from './pages/Password';
@@ -25,12 +24,16 @@ import ParentNotices from './pages/parent/Notices';
 
 // Faculty Pages
 import FacultyDashboard from './pages/faculty/Dashboard';
+import FacultyQueries from './pages/faculty/Queries';
+import FacultyNotices from './pages/faculty/Notices';
+import FacultyNLQuery from './pages/faculty/NLQuery';
 
 // Admin Pages
 import AdminDashboard from './pages/admin/Dashboard';
 import AdminQueries from './pages/admin/Queries';
 import AdminNoticeBuilder from './pages/admin/NoticeBuilder';
 import AdminChatBot from './pages/admin/ChatBotPage';
+import AdminAddUser from './pages/admin/AddUser';
 
 // Route guard
 import ProtectedRoute from './components/common/ProtectedRoute';
@@ -42,7 +45,6 @@ function AppRoutes() {
     <Routes>
       {/* Auth Pages */}
       <Route path="/login" element={<Login />} />
-      <Route path="/signup" element={<Signup />} />
 
       {/* Root redirect */}
       <Route path="/" element={
@@ -66,12 +68,16 @@ function AppRoutes() {
 
       {/* Faculty Routes */}
       <Route path="/faculty" element={<ProtectedRoute role="faculty"><FacultyDashboard /></ProtectedRoute>} />
+      <Route path="/faculty/queries" element={<ProtectedRoute role="faculty"><FacultyQueries /></ProtectedRoute>} />
+      <Route path="/faculty/notices" element={<ProtectedRoute role="faculty"><FacultyNotices /></ProtectedRoute>} />
+      <Route path="/faculty/nlquery" element={<ProtectedRoute role="faculty"><FacultyNLQuery /></ProtectedRoute>} />
 
       {/* Admin Routes */}
       <Route path="/admin" element={<ProtectedRoute role="admin"><AdminDashboard /></ProtectedRoute>} />
       <Route path="/admin/queries" element={<ProtectedRoute role="admin"><AdminQueries /></ProtectedRoute>} />
       <Route path="/admin/notices" element={<ProtectedRoute role="admin"><AdminNoticeBuilder /></ProtectedRoute>} />
       <Route path="/admin/chatbot" element={<ProtectedRoute role="admin"><AdminChatBot /></ProtectedRoute>} />
+      <Route path="/admin/add-user" element={<ProtectedRoute role="admin"><AdminAddUser /></ProtectedRoute>} />
 
       {/* Shared Routes (accessible by any logged-in user) */}
       <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />

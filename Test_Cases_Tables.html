@@ -1,0 +1,223 @@
+<html>
+<head>
+<style>
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-family: Arial, sans-serif;
+  margin-bottom: 20px;
+}
+th, td {
+  border: 1px solid black;
+  padding: 8px;
+  text-align: left;
+}
+th {
+  background-color: #f2f2f2;
+}
+h3, h4 {
+  font-family: Arial, sans-serif;
+}
+</style>
+</head>
+<body>
+
+<h3>5.5 TEST CASES AND TEST RESULTS</h3>
+
+<h4>5.5.1 Unit Test Cases</h4>
+
+<p><strong>Table 5.1 Unit Test Cases for Registration and Authentication</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Test Case ID</th>
+      <th>Test Case</th>
+      <th>Test Case I/P</th>
+      <th>Actual Result</th>
+      <th>Expected Result</th>
+      <th>Result (Pass/Fail)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>TC_REG_001</td>
+      <td>Test registration of a new student</td>
+      <td>Username: "test_student", Password: "test123", User Type: "STUDENT"</td>
+      <td>User registered successfully</td>
+      <td>User registration successful</td>
+      <td>Pass</td>
+    </tr>
+    <tr>
+      <td>TC_REG_002</td>
+      <td>Test registration of a new admin</td>
+      <td>Username: "admin_user", Password: "admin123", User Type: "ADMIN"</td>
+      <td>User registered successfully</td>
+      <td>User registration successful</td>
+      <td>Pass</td>
+    </tr>
+    <tr>
+      <td>TC_REG_003</td>
+      <td>Test registration with existing username</td>
+      <td>Username: "test_student", Password: "test123", User Type: "STUDENT"</td>
+      <td>Registration failed, username exists</td>
+      <td>Registration failed</td>
+      <td>Pass</td>
+    </tr>
+    <tr>
+      <td>TC_AUTH_001</td>
+      <td>Test login with valid student credentials</td>
+      <td>Username: "test_student", Password: "test123", User Type: "STUDENT"</td>
+      <td>User logged in successfully</td>
+      <td>User login successful</td>
+      <td>Pass</td>
+    </tr>
+    <tr>
+      <td>TC_AUTH_002</td>
+      <td>Test login with valid admin credentials</td>
+      <td>Username: "admin_user", Password: "admin123", User Type: "ADMIN"</td>
+      <td>User logged in successfully</td>
+      <td>User login successful</td>
+      <td>Pass</td>
+    </tr>
+    <tr>
+      <td>TC_AUTH_003</td>
+      <td>Test login with invalid credentials</td>
+      <td>Username: "invalid_user", Password: "wrong_password", User Type: "STUDENT"</td>
+      <td>Authentication failed</td>
+      <td>Authentication failed</td>
+      <td>Pass</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4>Testing Approach</h4>
+
+<p><strong>Table 5.2 Testing Approach for Other Modules</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Module</th>
+      <th>Testing Approach</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Grievance Management</strong></td>
+      <td>
+        1. Submit grievances with valid descriptions and verify they are saved and routed to admin.<br>
+        2. Submit grievances with empty details and check for validation errors.<br>
+        3. Admin updates grievance status and verify the student can see the updated status.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>Attendance Tracking</strong></td>
+      <td>
+        1. Mark attendance for a student for a specific date and verify it is recorded.<br>
+        2. Attempt to mark attendance for a future date and check for error handling.<br>
+        3. Generate attendance statistics and ensure calculations are accurate.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>Chatbot</strong></td>
+      <td>
+        1. Input common queries in text format and verify relevant responses.<br>
+        2. Submit unrecognized queries and verify escalation to human/admin intervention or default fallback response.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>Notice Board</strong></td>
+      <td>
+        1. Admin creates a notice and verifies it is visible to the intended user roles (e.g., all students).<br>
+        2. Test boundary cases like very long notice descriptions and missing titles.
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<h4>5.5.2 Acceptance Test Cases</h4>
+
+<p><strong>Table 5.3 Acceptance Test Cases for Various Modules</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Test Case ID</th>
+      <th>Test Case</th>
+      <th>Test Case I/P</th>
+      <th>Actual Result</th>
+      <th>Expected Result</th>
+      <th>Result (Pass/Fail)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>TC001</td>
+      <td>Registration Process - Valid Input</td>
+      <td>User enters valid registration details</td>
+      <td>Registration successful</td>
+      <td>User account created</td>
+      <td>Pass</td>
+    </tr>
+    <tr>
+      <td>TC002</td>
+      <td>Registration Process - Invalid Input</td>
+      <td>User enters invalid registration details (e.g., missing password)</td>
+      <td>Registration failed</td>
+      <td>Error message displayed</td>
+      <td>Pass</td>
+    </tr>
+    <tr>
+      <td>TC003</td>
+      <td>Authentication Process - Valid Credentials</td>
+      <td>User enters valid login credentials</td>
+      <td>Authentication successful</td>
+      <td>User logged in and token received</td>
+      <td>Pass</td>
+    </tr>
+    <tr>
+      <td>TC004</td>
+      <td>Authentication Process - Invalid Credentials</td>
+      <td>User enters invalid login credentials</td>
+      <td>Authentication failed</td>
+      <td>Error message displayed (401 Unauthorized)</td>
+      <td>Pass</td>
+    </tr>
+    <tr>
+      <td>TC005</td>
+      <td>Grievance Submission - Valid Input</td>
+      <td>Student submits a grievance with valid text</td>
+      <td>Grievance logged successfully</td>
+      <td>Grievance recorded and visible to admin</td>
+      <td>Pass</td>
+    </tr>
+    <tr>
+      <td>TC006</td>
+      <td>Grievance Submission - Invalid Input</td>
+      <td>Student tries to submit an empty grievance</td>
+      <td>Grievance submission failed</td>
+      <td>Error message displayed (400 Bad Request)</td>
+      <td>Pass</td>
+    </tr>
+    <tr>
+      <td>TC007</td>
+      <td>Attendance Marking - Valid Input</td>
+      <td>Teacher marks a student present for today</td>
+      <td>Attendance recorded successfully</td>
+      <td>Attendance saved in database</td>
+      <td>Pass</td>
+    </tr>
+    <tr>
+      <td>TC008</td>
+      <td>Notice Creation - Unauthorized</td>
+      <td>Student tries to create a notice</td>
+      <td>Action blocked</td>
+      <td>Error message displayed (403 Forbidden)</td>
+      <td>Pass</td>
+    </tr>
+  </tbody>
+</table>
+
+</body>
+</html>

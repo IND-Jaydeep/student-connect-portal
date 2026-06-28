@@ -30,7 +30,17 @@ export default function AdminDashboard() {
 
   return (
     <Layout gridSpan>
-      <h1>Admin Dashboard</h1>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <h1>Admin Dashboard</h1>
+        <button 
+          className="btn" 
+          onClick={() => window.location.href='/admin/add-user'}
+          style={{ background: 'var(--color-primary)', color: 'white', display: 'flex', alignItems: 'center', gap: '0.5rem' }}
+        >
+          <span className="material-icons-sharp">person_add</span>
+          Add New User
+        </button>
+      </div>
 
       {/* Stats Cards */}
       <div className="subjects" style={{ gridTemplateColumns: 'repeat(3, 1fr)', marginBottom: '2rem' }}>

@@ -3,7 +3,7 @@ package com.studentconnect.backend.service;
 import com.studentconnect.backend.dto.AuthResponse;
 import com.studentconnect.backend.dto.LoginRequest;
 import com.studentconnect.backend.dto.SignupRequest;
-import com.studentconnect.backend.entity.User;
+import com.studentconnect.backend.entity.*;
 import com.studentconnect.backend.enums.Role;
 import com.studentconnect.backend.repository.UserRepository;
 import com.studentconnect.backend.security.JwtUtil;
@@ -26,15 +26,52 @@ public class AuthService {
 
         Role role = Role.valueOf(request.getRole().toUpperCase());
 
-        User user = User.builder()
-                .name(request.getName())
-                .email(request.getEmail())
-                .password(passwordEncoder.encode(request.getPassword()))
-                .role(role)
-                .phone(request.getPhone())
-                .course(request.getCourse())
-                .studentId(request.getStudentId())
-                .build();
+        User user;
+        switch (role) {
+            case STUDENT:
+                user = Student.builder()
+                        .name(request.getName())
+                        .email(request.getEmail())
+                        .password(passwordEncoder.encode(request.getPassword()))
+                        .role(role)
+                        .phone(request.getPhone())
+                        .branch(request.getCourse())
+                        .studentId(request.getStudentId())
+                        .build();
+                break;
+            case FACULTY:
+                user = Faculty.builder()
+                        .name(request.getName())
+                        .email(request.getEmail())
+                        .password(passwordEncoder.encode(request.getPassword()))
+                        .role(role)
+                        .phone(request.getPhone())
+                        .department(request.getCourse())
+                        .employeeId(request.getStudentId())
+                        .build();
+                break;
+            case ADMIN:
+                user = Admin.builder()
+                        .name(request.getName())
+                        .email(request.getEmail())
+                        .password(passwordEncoder.encode(request.getPassword()))
+                        .role(role)
+                        .phone(request.getPhone())
+                        .department(request.getCourse())
+                        .employeeId(request.getStudentId())
+                        .build();
+                break;
+            case PARENT:
+            default:
+                user = Parent.builder()
+                        .name(request.getName())
+                        .email(request.getEmail())
+                        .password(passwordEncoder.encode(request.getPassword()))
+                        .role(role)
+                        .phone(request.getPhone())
+                        .build();
+                break;
+        }
 
         user = userRepository.save(user);
 

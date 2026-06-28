@@ -20,6 +20,16 @@ export function AuthProvider({ children }) {
     }
   });
 
+  useEffect(() => {
+    if (user && user.token && !user.profile) {
+      api.get('/users/profile').then(profileData => {
+        setUser(prev => ({ ...prev, profile: profileData }));
+      }).catch(err => {
+        console.error("Failed to fetch user profile", err);
+      });
+    }
+  }, [user?.token]);
+
   const login = async (email, password, role) => {
     try {
       const response = await api.post('/auth/login', { email, password, role });

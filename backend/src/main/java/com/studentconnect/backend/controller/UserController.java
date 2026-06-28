@@ -1,6 +1,6 @@
 package com.studentconnect.backend.controller;
 
-import com.studentconnect.backend.entity.User;
+import com.studentconnect.backend.entity.*;
 import com.studentconnect.backend.repository.UserRepository;
 import com.studentconnect.backend.security.JwtUtil;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +20,7 @@ public class UserController {
     private final PasswordEncoder passwordEncoder;
 
     @GetMapping("/profile")
+    @org.springframework.transaction.annotation.Transactional(readOnly = true)
     public ResponseEntity<Map<String, Object>> getProfile(
             @RequestHeader("Authorization") String authHeader) {
         String token = authHeader.substring(7);
@@ -28,6 +29,37 @@ public class UserController {
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
+        String course = "";
+        String studentId = "";
+        if (user instanceof Student) {
+            course = ((Student) user).getBranch();
+            studentId = ((Student) user).getStudentId();
+        } else if (user instanceof Faculty) {
+            course = ((Faculty) user).getDepartment();
+            studentId = ((Faculty) user).getEmployeeId();
+        } else if (user instanceof Admin) {
+            course = ((Admin) user).getDepartment();
+            studentId = ((Admin) user).getEmployeeId();
+        } else if (user instanceof Parent) {
+            java.util.List<Student> children = ((Parent) user).getChildren();
+            if (children != null && !children.isEmpty()) {
+                StringBuilder courseBuilder = new StringBuilder("Parent of ");
+                for (int i = 0; i < children.size(); i++) {
+                    Student child = children.get(i);
+                    courseBuilder.append(child.getName());
+                    if (child.getBranch() != null && !child.getBranch().isEmpty()) {
+                        courseBuilder.append(" (").append(child.getBranch()).append(")");
+                    }
+                    if (i < children.size() - 1) {
+                        courseBuilder.append(", ");
+                    }
+                }
+                course = courseBuilder.toString();
+            } else {
+                course = "Parent";
+            }
+        }
+
         Map<String, Object> profile = Map.of(
                 "id", user.getId(),
                 "name", user.getName(),
@@ -35,8 +67,8 @@ public class UserController {
                 "role", user.getRole().name().toLowerCase(),
                 "phone", user.getPhone() != null ? user.getPhone() : "",
                 "address", user.getAddress() != null ? user.getAddress() : "",
-                "course", user.getCourse() != null ? user.getCourse() : "",
-                "studentId", user.getStudentId() != null ? user.getStudentId() : "",
+                "course", course != null ? course : "",
+                "studentId", studentId != null ? studentId : "",
                 "photoUrl", user.getPhotoUrl() != null ? user.getPhotoUrl() : "/images/profile-1.jpg",
                 "dob", user.getDob() != null ? user.getDob().toString() : ""
         );

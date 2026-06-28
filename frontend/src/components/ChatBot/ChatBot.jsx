@@ -69,8 +69,18 @@ export default function ChatBot({ greeting }) {
 
   return (
     <div className="service-card chat-box-card" style={{ width: '100%' }}>
-      <h2>AI Study Assistant</h2>
-      <p className="text-muted">Ask our AI chatbot anything about your courses, timetable, or exam dates.</p>
+      <h2>
+        {role === 'admin' ? 'Admin Assistance AI' : 
+         role === 'faculty' ? 'Faculty Assistance AI' : 
+         'AI Study Assistant'}
+      </h2>
+      <p className="text-muted">
+        {role === 'admin' 
+          ? 'Ask our AI chatbot anything about database status, grievances, or system analytics.' 
+          : role === 'faculty'
+          ? 'Ask our AI chatbot anything about syllabus updates, meeting schedules, or notice publishing.'
+          : 'Ask our AI chatbot anything about your courses, timetable, or exam dates.'}
+      </p>
       <div className="chatbot-container" style={{ marginTop: '1rem' }}>
         <div className="chat-messages" style={{ maxHeight: '30rem' }}>
           {messages.map((msg, i) => (

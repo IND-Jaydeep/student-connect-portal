@@ -71,8 +71,6 @@ export default function Login() {
 
           <button type="submit" className="btn">Sign In</button>
         </form>
-
-        <Link to="/signup" className="auth-link">Don't have an account? Sign Up</Link>
       </div>
     </div>
   );
